@@ -1,0 +1,7 @@
+/* src/custom.css */
+.text-stroke {
+    color: transparent; /* Make the inside of the text transparent */
+    -webkit-text-stroke-width: 0.3px; /* Adjust the width of the stroke */
+    -webkit-text-stroke-color: white; /* Set the color of the stroke */
+  }
+  
