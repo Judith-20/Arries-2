@@ -3,7 +3,8 @@ import { PiShareBold } from "react-icons/pi";
 import { PiShoppingCartBold } from "react-icons/pi";
 import Logo from '../materials/logo.png';
 import { IoIosArrowDown } from "react-icons/io";
-import User from "../materials/productslisting/user.png"
+import User from "../materials/productslisting/user.png";
+import { BiSolidSearch } from "react-icons/bi";
 
 const ProductListing = () => {
     return (
