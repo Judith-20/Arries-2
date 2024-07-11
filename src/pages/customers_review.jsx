@@ -1,6 +1,6 @@
 import React from 'react';
 //import { GrFormNext } from "react-icons/gr";
-import { IoChevronForwardOutline, IoChevronBackOutline } from "react-icons/io5";
+import { IoChevronForwardOutline, IoChevronBackOutline } from "../icon";
 import Sarah from "../materials/customers/1.png"
 import Emily from "../materials/customers/2.png"
 import Bimpe from "../materials/customers/3.png"
@@ -75,7 +75,7 @@ const CustomersReview = () => {
                 <IoChevronBackOutline size={20} className='text-[#98A2B3] rounded-[50%] cursor-pointer' />
                 </span>
                 <span className='bg-white rounded-[50%] p-2'>
-                <IoChevronForwardOutline size={20} className='text-[#98A2B3] rounded-[50%] active:text-rblue cursor-pointer' />
+                <IoChevronForwardOutline size={20} className=' rounded-[50%] active:text-rblue text-rblue cursor-pointer' />
                 </span>
             </div>
 

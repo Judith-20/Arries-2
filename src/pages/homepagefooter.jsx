@@ -1,7 +1,7 @@
 import React from 'react';
 import FooterLogo from '../materials/Desktop/footerlogo.png';
-import { IoLogoInstagram } from "react-icons/io5";
-import { FaFacebook } from "react-icons/fa";
+import { IoLogoInstagram, FaFacebook } from "../icon";
+// import { FaFacebook } from "react-icons/fa";
 
 const HomePageFooter = () => {
     return (

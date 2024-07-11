@@ -7,12 +7,15 @@ import Sales from '../materials/sales.png';
 import { PiLineVerticalThin } from "react-icons/pi";
 import Countdown from '../materials/components/countdown';
 import PurpleDress from '../materials/arrival/1.png';
-import NewArrival from '../materials/arrival/2.png';
+import PinkSuit from '../materials/arrival/4.png';
+import NewArrival from '../materials/arrival/5.png';
+import LightPink from '../materials/arrival/6.png';
 import BlueSuit from '../materials/arrival/3.png';
 import PopularProducts from './popular';
 import CustomersReview from './customers_review';
 import HomePageFooter from './homepagefooter';
-import { FaCircle } from "react-icons/fa";
+import { Link } from 'react-router-dom';
+//import { FaCircle } from "react-icons/fa";
 
 const HomePage = () => {
   // State to handle the navbar's open/close status
@@ -25,7 +28,7 @@ const HomePage = () => {
     return (
         <>
           <div className='mobile:w-full '>
-          <div className='mx-10 mobile:mx-6 mobile:px-6 mobile:bg-red-600 mt-2  w-[94%] bg-whyte '>
+          <div className='mx-10 mobile:mx-6 mobile:px-6  mt-2  w-[94%] bg-whyte '>
             {/* Main Navigation Bar */}
           <nav className=" flex justify-between  mobile:mt-10 mobile:pt-6 items-center bg-whyte mb-12">
             <img src={Logo} alt="" className="w-[10%] h-[11%] mobile:w-[34%] mobile:h-[40%] " />
@@ -56,7 +59,7 @@ const HomePage = () => {
               <li className='active:text-rblue'> <NavLink to={"/"}> Home </NavLink> </li>
               <li className='active:text-rblue' ><NavLink to={"/shop"}> Shop </NavLink></li>
               <li className='active:text-rblue'><NavLink to={"/products"}> Products </NavLink></li>
-              <li className='active:text-rblue'><NavLink to={"/contact-us"}> Contact Us </NavLink></li>
+              <li className='active:text-rblue'><NavLink to={"/home"}> Contact Us </NavLink></li>
             </ul>
 
             <div className="">
@@ -94,14 +97,28 @@ const HomePage = () => {
           {/* New Arrival */}
           <div className="flex gap-4 mt-10 relative">
             <img src={PurpleDress} alt="Purple Dress" className="h-[20%] w-[33%] mobile:w-[47.5%] bg-sblue " />
-            <img src={NewArrival} alt="New Arrival" className="h-[20%] w-[33%] mobile:w-[47.5%] " />
-            <img src={BlueSuit} alt="BlueSuit" className="h-[20%] w-[32%] mobile:hidden " />
+            <div className="flex flex-col h-[20%] w-[33%] mobile:w-[47.5%] ">
+            <img src={PinkSuit} alt="New Arrival" className="h-[20%] w-full  " />
+
+            <span className="relative mb-40">
+            <img src={NewArrival} alt="New Arrival" className="h-[40%] pt-5 w-full mobile:w-[47.5%] " />
+            
+            <Link to="/shop">
+            <button className="capitalize bg-rblue rounded-lg py-3 px-6 font-medium text-lg text-whyte absolute left-[140px] top-64  ">shop now</button>
+            </Link>
+            </span>
+
+            <img src={LightPink} alt="New Arrival" className="h-[20%] w-full pt-[15px]  " />
+            
+            </div>
+
+            <img src={BlueSuit} alt="BlueSuit" className="h-[20%] w-[33%] mobile:hidden " />
 
             {/* [#F2F4F7] [#D0D5DD] [#98A2B3] [#667085] #475467 #344054 #1D2939 #101828 */}
-            <div className="flex gap-3 absolute left-64 top-80 md:hidden bg pt-4">
+            {/* <div className="flex gap-3 absolute left-64 top-80 md:hidden bg pt-4">
             <FaCircle size={10} className='text-rblue' />
             <FaCircle size={10} className='text-[#667085]'  />
-            </div>
+            </div> */}
           </div>
 
           {/* Popular Products */}
