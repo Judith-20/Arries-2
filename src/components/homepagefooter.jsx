@@ -1,4 +1,3 @@
-import React from 'react';
 import FooterLogo from '../materials/Desktop/footerlogo.png';
 import { IoLogoInstagram, FaFacebook } from "../icon";
 // import { FaFacebook } from "react-icons/fa";
