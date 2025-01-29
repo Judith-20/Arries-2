@@ -263,36 +263,52 @@ export const dresses = [
 // for the product page 
 export const tabProducts = [
   {
+    id: 25,
     image: Zee1,
-    title: "Zee Dress"
+    title: "Zee Dress",
+    price: 302000,
   },
   {
+    id: 26,
     image: Zara2,
-    title: "Zara Dress"
+    title: "Zara Dress",
+    price: 202000,
   },
   {
+    id: 27,
     image: Beam1,
-    title: "Beam Dress"
+    title: "Beam Dress",
+    price:205000,
   },
   {
+    id: 28,
     image: Zamaiah1,
-    title: "Zamaiah Dress"
+    title: "Zamaiah Dress",
+    price: 100000,
   },
   {
+    id: 29,
     image: Zoe1,
-    title: "Zoe Dress"
+    title: "Zoe Dress",
+    price:150000,
   },
   {
+    id: 30,
     image: Tubo1,
-    title: "Tubo Dress"
+    title: "Tubo Dress",
+    price:220000,
   },
   {
+    id: 31,
     image: Blaze1,
-    title: "Blaze Dress"
+    title: "Blaze Dress",
+    price:120000,
   },
   {
+    id: 32,
     image: Mays1,
-    title: "Mays Dress"
+    title: "Mays Dress",
+    price:100000,
   },
 ]
 
