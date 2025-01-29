@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { IoMenu, IoClose } from "react-icons/io5";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import Logo from "../materials/logo.png";
 import Image from "../materials/homeimg.png";
 import Sales from "../materials/sales.png";
@@ -15,12 +15,14 @@ import BlueSuit from "../materials/arrival/3.png";
 import PopularProducts1 from "../components/popular1";
 import CustomersReview from "../components/customers_review";
 import HomePageFooter from "../components/homepagefooter";
-import { Link } from "react-router-dom";
+import CartIcon from "../components/CartIcon";
 import Button from "../components/Button";
+import PropTypes from "prop-types";
+
 
 //import { FaCircle } from "react-icons/fa";
 
-const HomePage = () => {
+const HomePage = ({products, onAddProducts, cart }) => {
   // State to handle the navbar's open/close status
   const [openNav, setOpenNav] = useState(true);
 
@@ -40,6 +42,7 @@ const HomePage = () => {
               className="w-[10%] h-[11%] mobile:w-[34%] mobile:h-[40%] "
             />
 
+            <div className="flex items-center gap-3">
             <ul className=" mobile:hidden flex gap-5 text-[13px] font-Inter font-semibold ">
               <li className="text-rblue">
                 <NavLink to="/">Home</NavLink>
@@ -54,6 +57,10 @@ const HomePage = () => {
                 <NavLink to="/contact-us">Contact Us</NavLink>
               </li>
             </ul>
+            <Link to="/cart">
+            <CartIcon cart={cart} />
+            </Link>
+            </div>
 
             <div className="flex gap-4 mobile:hidden">
               <Button style={{ padding: "0.5rem 1rem", color: "#0b69ff" }}>
@@ -231,7 +238,8 @@ const HomePage = () => {
           <h1 className="font-semibold text-2xl mt-10 mobile:text-xl pb-5">
             Popular Products
           </h1>
-          <PopularProducts1 />
+          {/* <PopularProducts1 products={products} setProducts={setProducts} selectedId={selectedId} onSelectProduct={onSelectProduct} onAddProducts={onAddProducts} setAddedProducts={setAddedProducts} /> */}
+          <PopularProducts1 products={products} onAddProducts={onAddProducts}  />
         </div>
         {/* Customers Review */}
         <CustomersReview />
@@ -243,103 +251,11 @@ const HomePage = () => {
   );
 };
 
+HomePage.propTypes = {
+  products: PropTypes.array,
+  cart: PropTypes.array,
+  onAddProducts: PropTypes.func,
+};
+
 export default HomePage;
 
-// import { React, useState } from 'react';
-// import { IoMenu, IoClose } from "react-icons/io5";
-// import { NavLink } from "react-router-dom";
-// import Logo from '../materials/logo.png';
-// import Image from '../materials/homeimg.png';
-// import Sales from '../materials/sales.png';
-// import { PiLineVerticalThin } from "react-icons/pi";
-// import Countdown from '../materials/components/countdown';
-// import PurpleDress from '../materials/arrival/1.png';
-// import NewArrival from '../materials/arrival/2.png';
-// import BlueSuit from '../materials/arrival/3.png';
-// import PopularProducts from './popular';
-// import CustomersReview from './customers_review';
-// import HomePageFooter from './homepagefooter';
-
-// const HomePage = () => {
-//   const [openNav, setOpenNav] = useState(true);
-
-//   const ToggleNavBar = () => {
-//     setOpenNav(!openNav);
-//   };
-
-//   return (
-//     <>
-//       <div className=''>
-//         <div className='mx-10  mt-2  w-[94%] bg-whyte '>
-//           {/* Main Navigation Bar */}
-//           <nav className="hidden md:flex justify-between items-center bg-whyte mb-12">
-//             <img src={Logo} alt="" className="w-[10%] h-[11%] mobile:w-[12%] mobile:h-[15%]" />
-
-//             <ul className=" mobile:hidden flex gap-5 text-[13px] font-Inter font-semibold ">
-//               <li className='text-rblue'><NavLink to="/">Home</NavLink></li>
-//               <li><NavLink to="/shop">Shop</NavLink></li>
-//               <li><NavLink to="/products">Products</NavLink></li>
-//               <li><NavLink to="/contact-us">Contact Us</NavLink></li>
-//             </ul>
-
-//             <div className="flex gap-4">
-//               <button className='border border-rblue rounded-md px-4 text active:bg-[#035ceb]'><NavLink to="/login">Log in</NavLink></button>
-//               <button className='bg-rblue border border-rblue rounded-md text-whyte py-2 px-2 active:bg-[#035ceb]'><NavLink to="/get-started">Get started</NavLink></button>
-//             </div>
-
-//             <div className='md:hidden' onClick={ToggleNavBar}>
-//               {!openNav ? <IoClose size={20} /> : <IoMenu size={20} className='text-rblue' />}
-//             </div>
-//             <div className={!openNav ? 'left-[0%] fixed top-0 w-[40%] bg-whyte h-full pl-4 pt-4 ease-in-out duration-500 md:hidden' : "fixed left-full ease-in-out duration-500"}>
-//               <ul className="p-3 text-sm block space-y-4 pt-8 font-bold">
-//                 <li className='text-rblue'><NavLink to="/">Home</NavLink></li>
-//                 <li><NavLink to="/shop">Shop</NavLink></li>
-//                 <li><NavLink to="/products">Products</NavLink></li>
-//                 <li><NavLink to="/contact-us">Contact Us</NavLink></li>
-//               </ul>
-
-//               <div className="">
-//                 <button className='border border-rblue rounded-md px-4 text active:bg-[#035ceb] w-[80%]'><NavLink to="/login">Log in</NavLink></button>
-//                 <button className='bg-rblue border border-rblue rounded-md text-whyte py-2 px-2 active:bg-[#035ceb]'><NavLink to="/get-started">Get started</NavLink></button>
-//               </div>
-//             </div>
-//           </nav>
-
-//           {/* Ultimate Sales */}
-//           <div className="bg-accent rounded-lg mt-112  mx-auto px-auto flex gap-72  justify-around">
-//             <div className="mt-10 ml-32">
-//               <h1 className="text-white text-5xl pl-8 uppercase pb-1">ultimate</h1>
-//               <img src={Sales} alt="Sales" className='w-[70%] h-[15%] mb-8 ml-3' />
-//               <div className='mb-6 flex items-center gap-3 text-lg'>
-//                 <p className="text-whyte">Get 25% off</p>
-//                 <PiLineVerticalThin className='text-slate-400' />
-//                 <p className='text-whyte'>Free Shipping</p>
-//               </div>
-//               <button className="capitalize bg-rblue rounded-md py-2 px-4 font-light text-xs mb-5 ml-24 text-whyte">shop now</button>
-//               <p className="text-whyte font-light text-sm tracking-wide ml-10 pb-2">Hurry, Before It's Too Late!</p>
-//               <Countdown />
-//             </div>
-//             <div>
-//               <img src={Image} alt="" className="h-full w-[70%]" />
-//             </div>
-//           </div>
-
-//           {/* New Arrival */}
-//           <div className="flex gap-3 mt-10">
-//             <img src={PurpleDress} alt="Purple Dress" className="h-[20%] w-[33%] bg-sblue" />
-//             <img src={NewArrival} alt="New Arrival" className="h-[20%] w-[33%]" />
-//             <img src={BlueSuit} alt="BlueSuit" className="h-[20%] w-[32%]" />
-//           </div>
-
-//           {/* Popular Products */}
-//           <h1 className='font-semibold text-2xl mt-10'>Popular Products</h1>
-//           <PopularProducts />
-//         </div>
-//         <CustomersReview />
-//         <HomePageFooter />
-//       </div>
-//     </>
-//   );
-// };
-
-// export default HomePage;

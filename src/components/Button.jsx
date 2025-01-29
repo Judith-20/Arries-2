@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 Button.propTypes = {
   children: PropTypes.node.isRequired, // `node` allows any renderable content
   style: PropTypes.object,
+  onClick: PropTypes.func,
 };
 
-function Button({children, style}) {
+function Button({children, style, onClick}) {
   return (
     <div>
-      <button style={style} className="border border-rblue rounded-md active:bg-[#035ceb]">{children}</button>
+      <button style={style} onClick={onClick} className="btn border border-rblue rounded-md">{children}</button>
 
     </div>
   )

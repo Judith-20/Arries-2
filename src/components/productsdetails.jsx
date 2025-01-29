@@ -12,28 +12,62 @@ import {
   BsDashCircleFill,
 } from "../icon";
 import { FaPlus } from "react-icons/fa";
-// import { GoHeart, IoIosAddCircleOutline, } from "react-icons/go";
-// import { PiCurrencyNgn } from "react-icons/pi";
-import Zee from "../materials/productslisting/product details/1.png";
-import Zara from "../materials/productslisting/product details/2.png";
-import Beam from "../materials/productslisting/product details/3.png";
-import Zamaiah from "../materials/productslisting/product details/4.png";
-import Zoe from "../materials/productslisting/product details/5.png";
-import Tubo from "../materials/productslisting/product details/6.png";
-import Blaze from "../materials/productslisting/product details/7.png";
-import Mays from "../materials/productslisting/product details/8.png";
+
 import Tux from "../materials/productslisting/product details/image.png";
 
 import Cards from "../materials/productslisting/product details/10.png";
+import { tabProducts } from "./data";
+import { tabProductDetails } from "./data";
+import Colors from "./Colors";
+
+import Tabs from "./Tabs";
 import HomePageFooter from "./homepagefooter";
 import CustomersReview from "./customers_review";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
 const ProductsDetails = () => {
+
+  const tabProductDetailsStyle = {
+    // color: "#667085",
+    fontSize: "1.125rem",
+    lineHeight: "1.75rem",
+    fontWeight: "600",
+    display: "flex",
+  }
+
+  const pStyle = {
+    margin: "0.5rem 0",
+    color: "#667085",
+  }
+
+  const sizes = [
+    {
+      title: "S"
+    },
+    {
+      title: "L"
+    },
+    {
+      title: "M"
+    },
+    {
+      title: "XL"
+    },
+  ]
+
+  const sizeStyle = {
+    borderRadius: "0.125rem",
+    padding: "0.25rem 0.69rem 0",
+    height: "2.25rem",
+    fontWeight: "500",
+    border: "1px solid #D0D5DD"
+  }
+  
+  
   return (
     <>
-      <div className="mobile:w-full w-full ">
+      <div className="mobile:w-full w-full">
         <div className="mx-10 mobile:mx-6 mobile:px-6  mt-2  w-[94%] bg-whyte ">
           <nav className=" flex justify-between  mobile:mt-10 mobile:pt-6 items-center bg-whyte mb-8">
             <img
@@ -86,16 +120,14 @@ const ProductsDetails = () => {
           </div>
 
           <div className="flex gap-2 justify-between ">
-            <div className="flex flex-col w-[15%] pl-20   gap-1">
-              <img src={Zee} alt="" className="h-[10%]  w-[50%] " />
-              <img src={Zara} alt="" className="h-[10%] w-[50%]" />
-              <img src={Beam} alt="" className="h-[10%] w-[50%]" />
-              <img src={Zamaiah} alt="" className="h-[10%] w-[50%]" />
-              <img src={Zoe} alt="" className="h-[10%] w-[50%]" />
-              <img src={Tubo} alt="" className="h-[10%] w-[50%]" />
-              <img src={Blaze} alt="" className="h-[10%] w-[50%]" />
-              <img src={Mays} alt="" className="h-[10%] w-[50%]" />
-            </div>
+                <div  className="flex flex-col w-[15%] pl-20   gap-1">
+            {
+              tabProducts.map(product => (
+                  <img key={product.title} src={product.image} alt={product.title} className="h-[10%]  w-[50%]" />
+              
+                ))
+              }
+              </div>
             <div className="mr-3 w-[35%] h-[10%]  bg-black  ">
               <img src={Tux} alt="" className="h-[46%] w-full  " />
             </div>
@@ -123,52 +155,22 @@ const ProductsDetails = () => {
                 <p className="text-rblue font-bold text-lg mb-9">150,000</p>
               </div>
 
-              <div className="flex gap-4">
-                <h1 className="text-black text-lg font-semibold">
-                  Descriptions <br />{" "}
-                  <span className="w-20 pl-20 ml-5 border-2 rounded-none border-t-black border-x-0 border-b-0"></span>{" "}
-                </h1>
-                {/* <hr className='w-20 pl-20 border border-black ' /> */}
-                <h1 className="active:text-black text-lg text-[#667085] font-medium ">
-                  Specifications
-                </h1>
-                <h1 className="active:text-black text-lg text-[#667085] font-medium ">
-                  Details
-                </h1>
+              <div className="">
+                <Tabs tabs={tabProductDetails} state="Descriptions" className="tab-product-details" divStyle={tabProductDetailsStyle} pStyle={pStyle} />
               </div>
-
-              <p className="text-[#667085] w-full mb-14 ">
-                Classic women&apos;s tailored suit from Arries place. Single
-                breasted design, notch lapel, two button closure, tailored fit
-                for a flattering silhouette.
-              </p>
 
               <p className="text-sm pb-4 font-medium">Color</p>
               <div className="flex mb-6 gap-4 items-center">
-                <p className="h-5 w-5 rounded-[50%] bg-[#667085] ring-offset-[1px] ring ring-[#667085] "></p>
-                <p className="active:ring-offset-[1px] active:ring h-6 w-6 active:h-5 active:w-5 active:ring-black  rounded-[50%] bg-black "></p>
-                <p className="active:ring-offset-2 active:ring h-6 w-6 active:h-5 active:w-5 active:ring-warning rounded-[50%] bg-warning "></p>
-                <p className="active:ring-offset-2 active:ring h-6 w-6 active:h-5 active:w-5 active:ring-error rounded-[50%] bg-error "></p>
-                <p className="active:ring-offset-2 active:ring h-6 w-6 active:h-5 active:w-5 active:ring-accent rounded-[50%] bg-accent "></p>
+
+                <Colors />
+                
               </div>
 
               <p className="text-sm pb-3 font-medium ">Size</p>
-              <div className="flex gap-2 mb-5 ">
+              <div className="flex gap-3 mb-5 items-center ">
                 {/* [#F2F4F7] [#D0D5DD] [#98A2B3] [#667085] #475467 #344054 #1D2939 #101828 */}
-                <p className="rounded-sm px-[11px] h-9 pt-1 font-medium border border-[#D0D5DD] active:bg-rblue active:text-white active:font-light ">
-                  S
-                </p>
-                <p className="rounded-sm px-[10px] h-9 pt-1 font-medium active:bg-rblue active:text-white active:font-light border border-[#D0D5DD]">
-                  M
-                </p>
-                <p className="rounded-sm px-3 h-9 pt-1  bg-rblue text-white border border-[#D0D5DD]">
-                  L
-                </p>
-                <p className="rounded-sm px-[8px] h-9 pt-1 font-medium active:bg-rblue active:text-white active:font-light border border-[#D0D5DD]">
-                  XL
-                </p>
-
-                <p className="text-rblue font-medium pt-2 text-sm">See Chart</p>
+                <Tabs tabs={sizes} state="S" className="size-style" divStyle={sizeStyle} />
+                <a href="" className="text-rblue font-medium text-sm">See Chart</a>
               </div>
               <div className="mb-5">
                 <p className="text-sm font-medium pb-1">Quantity</p>

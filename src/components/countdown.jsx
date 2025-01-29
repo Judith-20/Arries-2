@@ -1,10 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
+import PropTypes from "prop-types";
 
-const Countdown = ({ initialDays = 3, initialHours = 0, initialMinutes = 0, initialSeconds = 0 }) => {
-  const [days, setDays] = useState(initialDays);
-  const [hours, setHours] = useState(initialHours);
-  const [minutes, setMinutes] = useState(initialMinutes);
-  const [seconds, setSeconds] = useState(initialSeconds);
+// const Countdown = ({ initialDays = 3, initialHours = 0, initialMinutes = 0, initialSeconds = 0 }) => {
+//   const [days, setDays] = useState(initialDays);
+//   const [hours, setHours] = useState(initialHours);
+//   const [minutes, setMinutes] = useState(initialMinutes);
+//   const [seconds, setSeconds] = useState(initialSeconds);
+
+function Countdown () {
+  const [days, setDays] = useState(1);
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
     const countdown = setInterval(() => {
@@ -22,8 +29,8 @@ const Countdown = ({ initialDays = 3, initialHours = 0, initialMinutes = 0, init
           } else {
             if (days > 0) {
               setDays(days - 1);
-              setHours(23);
-              setMinutes(59);
+              setHours(0);
+              setMinutes(0);
               setSeconds(59);
             } else {
               clearInterval(countdown);
@@ -61,8 +68,14 @@ const Countdown = ({ initialDays = 3, initialHours = 0, initialMinutes = 0, init
             
     </div>
   );
-};
+}
 
+Countdown.propTypes = {
+  initialDays: PropTypes.number,
+  initialHours: PropTypes.number,
+  initialMinutes: PropTypes.number,
+  initialSeconds: PropTypes.number,
+};
 export default Countdown;
 
 
