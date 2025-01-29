@@ -1,17 +1,20 @@
+import PropTypes from "prop-types";
 import Logo from "../materials/logo.png";
 import {
-  TiPlus,
+  // TiPlus,
   GoHeart,
   VscCircleFilled,
   TbBus,
   BsBoxSeam,
   PiCurrencyNgn,
   HiStar,
-  PiShoppingCartBold,
+  // PiShoppingCartBold,
   PiShareBold,
   BsDashCircleFill,
 } from "../icon";
 import { FaPlus } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
 
 // import Tux from "../materials/productslisting/product details/image.png";
 
@@ -19,19 +22,46 @@ import Cards from "../materials/productslisting/product details/10.png";
 import { tabProducts } from "./data";
 import { tabProductDetails } from "./data";
 import Colors from "./Colors";
+import CartIcon from "./CartIcon";
 
 import Tabs from "./Tabs";
 import HomePageFooter from "./homepagefooter";
 import CustomersReview from "./customers_review";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 
-const ProductsDetails = () => {
+const ProductsDetails = ({ onAddProducts, cart }) => {
   const [selectedProduct, setSelectedProduct] = useState(25);
+  const [quantities, setQuantities] = useState(
+    tabProducts.reduce(
+      (acc, product) => ({ ...acc, [product.id]: 0 }),
+      {}
+    )
+  );
+
+  const handleIncrease = (id) => {
+    setQuantities({ ...quantities, [id]: quantities[id] + 1 });
+  };
+
+  const handleDecrease = (id) => {
+    setQuantities({
+      ...quantities,
+      [id]: Math.max(quantities[id] - 1, 0),
+    });
+  };
 
   function handleSelectedProduct(id) {
     setSelectedProduct(id);
+  }
+
+  function formatCurrency(value) {
+    const formattedCurrency = new Intl.NumberFormat("en-NG", {
+      style:"currency", 
+      currency: "NGN",
+      minimumSignificantDigits:"2"
+    }).format(value)
+    return formattedCurrency
   }
 
   // Find the selected product
@@ -102,7 +132,7 @@ const ProductsDetails = () => {
                 </li>
               </ul>
 
-              <div className="relative mb-">
+              {/* <div className="relative mb-">
                 <span className="bg-transparent border border-[#F2F4F7] rounded-[50%] p-1.5 ">
                   <PiShoppingCartBold size={15} className="cursor-pointer  " />
                 </span>
@@ -112,7 +142,10 @@ const ProductsDetails = () => {
                     className="text-rblue absolute left-4 top-5 "
                   />
                 </span>
-              </div>
+              </div> */}
+              <Link to="/cart">
+                          <CartIcon cart={cart} />
+                          </Link>
             </div>
 
             <button className=" border border-rblue rounded-md text-rblue py-2 px-2 active:bg-[#035ceb] ">
@@ -191,10 +224,10 @@ const ProductsDetails = () => {
                   </div>
 
                   <div className="flex">
-                    <PiCurrencyNgn size={20} className="text-rblue mt-1" />
+                    {/* <PiCurrencyNgn size={20} className="text-rblue mt-1" /> */}
                     <p className="text-rblue font-bold text-lg mb-9">
                       {/* 150,000 */}
-                      {selectedProductDetails.price}
+                      {formatCurrency(selectedProductDetails.price)}
                     </p>
                   </div>
 
@@ -235,21 +268,29 @@ const ProductsDetails = () => {
                           <BsDashCircleFill
                             size={15}
                             className="text-[#D0D5DD] mr-2 mobile:pr-1 cursor-pointer"
+                            onClick={() => handleDecrease(selectedProductDetails.id)}
                           />
                         </span>
                         {/* [#F2F4F7] [#D0D5DD] [#98A2B3] [#667085] #475467 #344054 #1D2939 #101828 */}
-                        <p className="text-sm text-[#98A2B3] "> 1 </p>
+                        <p className="text-sm text-[#98A2B3] "> {quantities[selectedProductDetails.id]} </p>
 
-                        <span className="border w-[18px] h-[18px]  bg-blue-500 text-white rounded-full ">
-                          <FaPlus size={8} className=" mt-[3.5px] ml-[4px] " />
+                        <span className="border w-[18px] h-[18px] flex items-center bg-blue-500 text-white rounded-full cursor-pointer ">
+                          <FaPlus size={8} className=" ml-[4px] "
+                          onClick={() => handleIncrease(selectedProductDetails.id)} />
                         </span>
                       </div>
 
-                      <Link to="/cart">
-                        <button className="rounded-lg py-2 px-24 text-sm bg-blue-700 text-white ">
+                      
+                        <button className="rounded-lg py-2 px-24 text-sm bg-blue-700 text-white "
+                        onClick={() =>
+                          onAddProducts({
+                            ...selectedProductDetails,
+                            quantity: quantities[selectedProductDetails.id] || 1,
+                          })
+                        }
+                        >
                           Add to cart
                         </button>
-                      </Link>
                       {/* <BsDashCircleFill size={17} className='text-[#D0D5DD] mr-2 mobile:pr-1 cursor-pointer' /> */}
                     </div>
 
@@ -265,7 +306,7 @@ const ProductsDetails = () => {
                     <div className="flex items-center mb-5">
                       <BsBoxSeam size={14} className="mr-1" />
                       <p className="text-xs">
-                        <b>Free Shipping & Returns:</b> On all orders over{" "}
+                        <b>Free Shipping & Returns:</b> On all orders over
                       </p>
                       <span className="flex items-center ml-0.5">
                         <PiCurrencyNgn size={13} />
@@ -298,4 +339,136 @@ const ProductsDetails = () => {
   );
 };
 
+ProductsDetails.propTypes = {
+  onAddProducts: PropTypes.func,
+  cart: PropTypes.array,
+};
+
 export default ProductsDetails;
+
+// {
+//   tabProducts.map(product => (
+//     <div key={product.id} className="">
+//       {selectedProductDetails ? (
+//   <>
+//     <h1 className="  text-xl capitalize font-medium mt-3">
+//       {/* blaze dress */}
+//       {selectedProductDetails.title}
+//     </h1>
+//     <div className="flex items-center pb-6  ">
+//       <HiStar size={15} className="text-warning" />
+//       <HiStar size={15} className="text-warning" />
+//       <HiStar size={15} className="text-warning" />
+//       <HiStar size={15} className="text-warning" />
+//       <HiStar size={16} className="text-[#E4E7EC] mr-1.5" />
+//       <p className="text-[#667085] font-medium text-xs mobile:text-[8.1px]  ">
+//         4.8 (222)
+//       </p>
+
+//       <VscCircleFilled size={6} className="text-[#667085] " />
+//       <p className="border-b-2 border-[#667085] pb-1">
+//         3 Reviews
+//       </p>
+//     </div>
+
+//     <div className="flex">
+//       <PiCurrencyNgn size={20} className="text-rblue mt-1" />
+//       <p className="text-rblue font-bold text-lg mb-9">
+//         {/* 150,000 */}
+//         {selectedProductDetails.price}
+//       </p>
+//     </div>
+//     </>
+//   ) : (
+//   <p>Select a Product</p>
+// )}
+
+//     <div className="">
+//       <Tabs
+//         tabs={tabProductDetails}
+//         state="Descriptions"
+//         className="tab-product-details"
+//         divStyle={tabProductDetailsStyle}
+//         pStyle={pStyle}
+//       />
+//     </div>
+
+//     <p className="text-sm pb-4 font-medium">Color</p>
+//     <div className="flex mb-6 gap-4 items-center">
+//       <Colors />
+//     </div>
+
+//     <p className="text-sm pb-3 font-medium ">Size</p>
+//     <div className="flex gap-3 mb-5 items-center ">
+//       {/* [#F2F4F7] [#D0D5DD] [#98A2B3] [#667085] #475467 #344054 #1D2939 #101828 *
+//       <Tabs
+//         tabs={sizes}
+//         state="S"
+//         className="size-style"
+//         divStyle={sizeStyle}
+//       />
+//       <a href="" className="text-rblue font-medium text-sm">
+//         See Chart
+//       </a>
+//     </div>
+//     <div className="mb-5">
+//       <p className="text-sm font-medium pb-1">Quantity</p>
+
+//       <div className=" flex gap-14 mb-12">
+//         <div className="flex gap-5 items-center border border-rblue px-2  rounded">
+//           <span className="">
+//             <BsDashCircleFill
+//               size={15}
+//               className="text-[#D0D5DD] mr-2 mobile:pr-1 cursor-pointer"
+//             />
+//           </span>
+//           {/* [#F2F4F7] [#D0D5DD] [#98A2B3] [#667085] #475467 #344054 #1D2939 #101828 *
+//           <p className="text-sm text-[#98A2B3] "> 1 </p>
+
+//           <span className="border w-[18px] h-[18px]  bg-blue-500 text-white rounded-full ">
+//             <FaPlus size={8} className=" mt-[3.5px] ml-[4px] " />
+//           </span>
+//         </div>
+
+//         <Link to="/cart">
+//           <button className="rounded-lg py-2 px-24 text-sm bg-blue-700 text-white ">
+//             Add to cart
+//           </button>
+//         </Link>
+//         {/* <BsDashCircleFill size={17} className='text-[#D0D5DD] mr-2 mobile:pr-1 cursor-pointer' /> *
+//       </div>
+
+//       <hr className="border-[#D0D5DD] mb-5" />
+
+//       <div className="flex items-center">
+//         <TbBus size={18} className="mr-0.5" />
+//         <p className=" text-xs">
+//           <b>Estimated Delivery:</b> Jul 30 - Aug 03
+//         </p>
+//       </div>
+
+//       <div className="flex items-center mb-5">
+//         <BsBoxSeam size={14} className="mr-1" />
+//         <p className="text-xs">
+//           <b>Free Shipping & Returns:</b> On all orders over
+//         </p>
+//         <span className="flex items-center ml-0.5">
+//           <PiCurrencyNgn size={13} />
+//           <p className="text-xs pt-0.5">500,000</p>
+//         </span>
+//       </div>
+
+//       <div className="bg-sblue py-5 px-4 w-[450px] ">
+//         <img
+//           src={Cards}
+//           alt=""
+//           className="w-[60%] h-[30%] ml-[90px] pb-3 "
+//         />
+//         <p className="text-center text-xs font-medium ">
+//           Guarantee safe and secure checkout
+//         </p>
+//       </div>
+//     </div>
+//     </div>
+//   ))
+// }

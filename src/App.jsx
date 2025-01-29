@@ -60,7 +60,7 @@ function App() {
           : item
       )
     );
-    console.log(id)
+    console.log(id);
   }
   //increasing the quantity
   function handleIncrease(id) {
@@ -76,7 +76,7 @@ function App() {
           : item
       )
     );
-    console.log(id)
+    console.log(id);
   }
 
   // removing an item from the cart
@@ -84,7 +84,6 @@ function App() {
     setCart(cart.filter((item) => item.id !== id));
   }
 
- 
   return (
     <BrowserRouter>
       <Routes>
@@ -94,7 +93,7 @@ function App() {
             <HomePage
               products={products}
               // totalQuantity={getTotalQuantity}
-              cart = {cart}
+              cart={cart}
               onAddProducts={handleAddToCart}
             />
           }
@@ -104,7 +103,7 @@ function App() {
           element={
             <HomePage
               products={products}
-              cart = {cart}
+              cart={cart}
               // totalQuantity={getTotalQuantity}
               onAddProducts={handleAddToCart}
             />
@@ -118,15 +117,20 @@ function App() {
           element={
             <Shop
               corporateProducts={corporateProducts}
-              dresses ={dresses}
+              dresses={dresses}
               onAddProducts={handleAddToCart}
-              cart = {cart}
+              cart={cart}
               // totalQuantity={getTotalQuantity}
             />
           }
         />
-        <Route path="/products" element={<Products />} />
-        <Route path="/product-details" element={<ProductsDetails />} />
+        <Route path="/products" element={<Products onAddProducts={handleAddToCart} cart={cart} />} />
+        <Route
+          path="/product-details"
+          element={
+            <ProductsDetails onAddProducts={handleAddToCart} cart={cart} />
+          }
+        />
         <Route
           path="/cart"
           element={
