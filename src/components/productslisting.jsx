@@ -10,9 +10,8 @@ import {
   IoChevronBackOutline,
   IoChevronForwardOutline,
 } from "../icon";
-import Logo from "../materials/logo.png";
 import User from "../materials/productslisting/user.png";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Corporates from "../materials/productslisting/1.png";
 import Dresas from "../materials/productslisting/2.png";
 import Ankara from "../materials/productslisting/3.png";
@@ -28,8 +27,7 @@ import Dress from "./dress";
 import Sarah from "../materials/productslisting/23.png";
 import Emily from "../materials/customers/2.png";
 import Bimpe from "../materials/customers/3.png";
-import CartIcon from "../components/CartIcon";
-// import { corporateProducts } from "./data";
+import NavBar from "../pages/NavBar";
 
 // for the tabs
 const tabs = [
@@ -192,43 +190,7 @@ const ProductListing = ({onAddProducts, corporateProducts, dresses, cart}) => {
         <div className="mx-10 mobile:mx-6 mobile:px-6  mt-2  w-[94%] bg-whyte ">
           {/* Main Navigation Bar */}
           <nav className=" flex justify-between  mobile:mt-10 mobile:pt-6 items-center bg-whyte mb-12">
-            <img
-              src={Logo}
-              alt=""
-              className="w-[10%] h-[11%] mobile:w-[34%] mobile:h-[40%] "
-            />
-
-            <div className="flex gap-7 items-center">
-              <ul className=" mobile:hidden flex gap-4 text-[13px] font-Inter font-semibold ">
-                <li className="">
-                  <NavLink to="/">Home</NavLink>
-                </li>
-                <li className="text-rblue">
-                  <NavLink to="/shop">Shop</NavLink>
-                </li>
-                <li className="active:text-rblue">
-                  <NavLink to="/products">Products</NavLink>
-                </li>
-                <li className="active:text-rblue">
-                  <NavLink to="/home">Contact Us</NavLink>
-                </li>
-              </ul>
-
-              <Link to="/cart" >
-              <span className="bg-transparent border border-[#F2F4F7] rounded-[50%] p-1.5 relative ">
-                <CartIcon cart = {cart} />
-                {/* <PiShoppingCartBold size={15} className="cursor-pointer" />
-                <p className="absolute text-xs text-rblue left-[0.4rem] bottom-[1.3rem] font-semibold">
-                  {Object.values(productCounts).reduce(
-                    (total, count) => total + count,
-                    0
-                  )}
-                </p> */}
-              </span>
-              </Link>
-              {/* [#F2F4F7] [#D0D5DD] [#98A2B3] [#667085] #475467 #344054 #1D2939 #101828 */}
-            </div>
-
+            <NavBar cart={cart} shopActive="text-rblue">
             <div className="flex gap- mobile:hidden">
               <div className="flex gap-2 items-center">
                 <IoIosArrowDown size={15} />
@@ -244,6 +206,9 @@ const ProductListing = ({onAddProducts, corporateProducts, dresses, cart}) => {
                 <NavLink to={"/logout"}> Log out </NavLink>
               </button>
             </div>
+            </NavBar>
+
+            
           </nav>
 
           <Tabs />

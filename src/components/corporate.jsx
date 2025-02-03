@@ -68,12 +68,12 @@ const Corporate = ({ corporateProducts, onAddProducts }) => {
           >
             <img
               src={product.image}
-              alt={product.title}
+              alt={`${product.title} Dress`}
               loading="lazy"
               className="h-[65%] mobile:h-[60%] w-full"
             />
             <div className="flex justify-between items-center pt-2.5 mobile:pt-2 mobile:w-full">
-              <p className="font-bold capitalize">{product.title}</p>
+              <p className="font-bold capitalize">{`${product.title} Dress`}</p>
               {favorites[product.id] ? (
                 <GoHeartFill
                   size={14}

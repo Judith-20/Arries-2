@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { IoMenu, IoClose } from "react-icons/io5";
 import { NavLink, Link } from "react-router-dom";
-import Logo from "../materials/logo.png";
+// import Logo from "../materials/logo.png";
 import Image from "../materials/homeimg.png";
 import Sales from "../materials/sales.png";
 import { PiLineVerticalThin } from "react-icons/pi";
@@ -15,14 +15,14 @@ import BlueSuit from "../materials/arrival/3.png";
 import PopularProducts1 from "../components/popular1";
 import CustomersReview from "../components/customers_review";
 import HomePageFooter from "../components/homepagefooter";
-import CartIcon from "../components/CartIcon";
+import NavBar from "./NavBar";
+// import CartIcon from "../components/CartIcon";
 import Button from "../components/Button";
 import PropTypes from "prop-types";
 
-
 //import { FaCircle } from "react-icons/fa";
 
-const HomePage = ({products, onAddProducts, cart }) => {
+const HomePage = ({ products, onAddProducts, cart }) => {
   // State to handle the navbar's open/close status
   const [openNav, setOpenNav] = useState(true);
 
@@ -36,47 +36,23 @@ const HomePage = ({products, onAddProducts, cart }) => {
         <div className="mx-10 mobile:mx-6 mobile:px-6  mt-2  w-[94%] bg-whyte ">
           {/* Main Navigation Bar */}
           <nav className=" flex justify-between  mobile:mt-10 mobile:pt-6 items-center bg-whyte mb-12">
-            <img
-              src={Logo}
-              alt=""
-              className="w-[10%] h-[11%] mobile:w-[34%] mobile:h-[40%] "
-            />
+            <NavBar cart={cart} homeActive="text-rblue">
+              <div className="flex gap-4 mobile:hidden">
+                <Button style={{ padding: "0.5rem 1rem", color: "#0b69ff" }}>
+                  <NavLink to={"/login"}> Log in </NavLink>
+                </Button>
 
-            <div className="flex items-center gap-3">
-            <ul className=" mobile:hidden flex gap-5 text-[13px] font-Inter font-semibold ">
-              <li className="text-rblue">
-                <NavLink to="/">Home</NavLink>
-              </li>
-              <li className="active:text-rblue">
-                <NavLink to="/shop">Shop</NavLink>
-              </li>
-              <li className="active:text-rblue">
-                <NavLink to="/products">Products</NavLink>
-              </li>
-              <li className="active:text-rblue">
-                <NavLink to="/contact-us">Contact Us</NavLink>
-              </li>
-            </ul>
-            <Link to="/cart">
-            <CartIcon cart={cart} />
-            </Link>
-            </div>
-
-            <div className="flex gap-4 mobile:hidden">
-              <Button style={{ padding: "0.5rem 1rem", color: "#0b69ff" }}>
-                <NavLink to={"/login"}> Log in </NavLink>
-              </Button>
-
-              <Button
-                style={{
-                  color: "#fafafa",
-                  backgroundColor: "#0b69ff",
-                  padding: "0.5rem",
-                }}
-              >
-                <NavLink to={"/get-started"}> Get started </NavLink>
-              </Button>
-            </div>
+                <Button
+                  style={{
+                    color: "#fafafa",
+                    backgroundColor: "#0b69ff",
+                    padding: "0.5rem",
+                  }}
+                >
+                  <NavLink to={"/get-started"}> Get started </NavLink>
+                </Button>
+              </div>
+            </NavBar>
 
             {/* Hamburger Menu Icon for Mobile */}
             <div className="md:hidden" onClick={ToggleNavBar}>
@@ -96,8 +72,7 @@ const HomePage = ({products, onAddProducts, cart }) => {
             >
               <ul className=" p-3 mobile:mb-2 text-sm block space-y-4 pt-8 font-bold ">
                 <li className="active:text-rblue">
-                  {" "}
-                  <NavLink to={"/"}> Home </NavLink>{" "}
+                  <NavLink to={"/"}> Home </NavLink>
                 </li>
                 <li className="active:text-rblue">
                   <NavLink to={"/shop"}> Shop </NavLink>
@@ -239,7 +214,7 @@ const HomePage = ({products, onAddProducts, cart }) => {
             Popular Products
           </h1>
           {/* <PopularProducts1 products={products} setProducts={setProducts} selectedId={selectedId} onSelectProduct={onSelectProduct} onAddProducts={onAddProducts} setAddedProducts={setAddedProducts} /> */}
-          <PopularProducts1 products={products} onAddProducts={onAddProducts}  />
+          <PopularProducts1 products={products} onAddProducts={onAddProducts} />
         </div>
         {/* Customers Review */}
         <CustomersReview />
@@ -258,4 +233,3 @@ HomePage.propTypes = {
 };
 
 export default HomePage;
-

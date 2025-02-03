@@ -27,6 +27,7 @@ import CartIcon from "./CartIcon";
 import Tabs from "./Tabs";
 import HomePageFooter from "./homepagefooter";
 import CustomersReview from "./customers_review";
+// import NavBar from "../pages/NavBar";
 // import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
@@ -179,7 +180,7 @@ const ProductsDetails = ({ onAddProducts, cart }) => {
                     >
                       <img
                         src={product.image}
-                        alt={product.title}
+                        alt={`${product.title} Dress`}
                         className=""
                       />
                     </li>
@@ -192,8 +193,8 @@ const ProductsDetails = ({ onAddProducts, cart }) => {
               {selectedProductDetails && (
                 <img
                   src={selectedProductDetails.image}
-                  alt={selectedProductDetails.title}
-                  className="h-full w-full"
+                  alt={`${selectedProductDetails.title} Dress`}
+                  className="h-full w-full aspect-auto"
                 />
               )}
             </div>
@@ -205,7 +206,7 @@ const ProductsDetails = ({ onAddProducts, cart }) => {
                 <>
                   <h1 className="  text-xl capitalize font-medium mt-3">
                     {/* blaze dress */}
-                    {selectedProductDetails.title}
+                    {selectedProductDetails.title}Dress
                   </h1>
                   <div className="flex items-center pb-6  ">
                     <HiStar size={15} className="text-warning" />

@@ -13,10 +13,14 @@ import Products from "./components/productsdetails";
 import ProductsDetails from "./components/productsdetails";
 import Cart from "./components/cart";
 import Checkout from "./components/checkout";
-import { useState } from "react";
+import { useLocalStorageState } from "./components/useLocalStorageState";
+// import { useState } from "react";
 
 function App() {
-  const [cart, setCart] = useState([]);
+  // const [cart, setCart] = useState([]);
+
+  // for the local storage
+  const[cart, setCart] = useLocalStorageState([], "cart")
 
   // adding to cart
   function handleAddToCart(product) {
@@ -124,7 +128,10 @@ function App() {
             />
           }
         />
-        <Route path="/products" element={<Products onAddProducts={handleAddToCart} cart={cart} />} />
+        <Route
+          path="/products"
+          element={<Products onAddProducts={handleAddToCart} cart={cart} />}
+        />
         <Route
           path="/product-details"
           element={
@@ -142,7 +149,17 @@ function App() {
             />
           }
         />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route
+          path="/checkout"
+          element={
+            <Checkout
+              cart={cart}
+              onAdd={handleIncrease}
+              onReduce={handleDecrease}
+              onRemove={removeFromCart}
+            />
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

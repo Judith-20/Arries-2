@@ -29,6 +29,9 @@ export default {
         'mobile': {'max': '768px'},
 
       },
+      animation: {
+        'spin-slow': 'spin 1.5s linear infinite', // Slower rotation
+      },
     },
   },
   plugins: [],

@@ -1,7 +1,6 @@
-import Logo from "../materials/logo.png";
 import {
-  TiPlus,
-  PiShoppingCartBold,
+  // TiPlus,
+  // PiShoppingCartBold,
   BsDashCircleFill,
   TbBus,
   BsBoxSeam,
@@ -11,12 +10,12 @@ import { FaPlus } from "react-icons/fa";
 import Cards from "../materials/productslisting/product details/10.png";
 import HomePageFooter from "./homepagefooter";
 import CustomersReview from "./customers_review";
-import CartIcon from "./CartIcon";
 // import Barbie from "../materials/popular/1.png";
 // import Joyce from "../materials/productslisting/24.png";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
+import NavBar from "../pages/NavBar";
 
 function formatCurrency(value) {
   const formattedCurrency = new Intl.NumberFormat("en-NG", {
@@ -42,48 +41,14 @@ function Cart({ cartItems, onAdd, onReduce, onRemove }) {
       <div className="mobile:w-full ">
         <div className="mx-10 mobile:mx-6 mobile:px-6  mt-2  w-[94%] bg-whyte ">
           <nav className=" flex justify-between  mobile:mt-10 mobile:pt-6 items-center bg-whyte mb-8">
-            <img
-              src={Logo}
-              alt=""
-              className="w-[10%] h-[11%] mobile:w-[34%] mobile:h-[40%] "
-            />
 
-            <div className="flex gap-7 items-center">
-              <ul className=" mobile:hidden flex gap-4 text-[13px] font-Inter font-semibold ">
-                <li className="">
-                  <NavLink to="/">Home</NavLink>
-                </li>
-                <li className="active:text-rblue">
-                  <NavLink to="/shop">Shop</NavLink>
-                </li>
-                <li className="text-rblue">
-                  <NavLink to="/products">Products</NavLink>
-                </li>
-                <li className="active:text-rblue">
-                  <NavLink to="/home">Contact Us</NavLink>
-                </li>
-              </ul>
-
-              {!cartItems.length ?
-              <div className="relative mb-">
-              <span className="bg-transparent border border-[#F2F4F7] rounded-[50%] p-1.5 ">
-                <PiShoppingCartBold size={15} className="cursor-pointer  " />
-              </span>
-              <span className="bg-slate-600">
-                <TiPlus
-                  size={9}
-                  className="text-rblue absolute left-4 top-5 "
-                />
-              </span>
-            </div>
-            :
-            <CartIcon cart={cartItems} />
-            }
-            </div>
-
-            <button className=" border border-rblue rounded-md text-rblue py-2 px-2 active:bg-[#035ceb] ">
+           <NavBar cart={cartItems}>
+           <button className=" border border-rblue rounded-md text-rblue py-2 px-2 active:bg-[#035ceb] ">
               <NavLink to={"/logout"}> Log out </NavLink>
             </button>
+           </NavBar>
+
+            
           </nav>
 
           <div className="">
@@ -91,7 +56,9 @@ function Cart({ cartItems, onAdd, onReduce, onRemove }) {
               Carts ({cartItems.length})
             </h1>
             <div className="text-right">
+              <Link to="/">
               <p className="text-rblue">Continue shopping</p>
+              </Link>
               <span className="border-x-0 border-t-[1px] border-b-0 border-rblue px-[70px] "></span>
             </div>
             {/* <button className="text-right border-x-0 border-t-0 border-b-[1px]  text-rblue border-rblue  ">Continue shopping</button> */}
@@ -103,7 +70,7 @@ function Cart({ cartItems, onAdd, onReduce, onRemove }) {
                 <div className="flex justify-between">
                   <div className="flex flex-col  gap-1">
                     {cartItems?.map((product, index) => (
-                      <div key={index} className="flex h-32 gap-[133px] mt-2">
+                      <div key={index} className="flex h-32 gap-[133px] my-2">
                         <span className="flex gap-2">
                           <img
                             src={product.image}
@@ -111,8 +78,8 @@ function Cart({ cartItems, onAdd, onReduce, onRemove }) {
                             className="h-full w-[45%] "
                           />
                           <span className="pl-1">
-                            <h1 className="font-semibold text-lg pt-4 pb-1">
-                              Barbie Set
+                            <h1 className="font-semibold text-lg pt-1 pb-1">
+                              {product.title} Set
                             </h1>
                             <p className="pb-1 text-sm font-medium">
                               Color: Pink, Blue
@@ -121,9 +88,7 @@ function Cart({ cartItems, onAdd, onReduce, onRemove }) {
                               Size: M, L
                             </p>
                             {/* [#F2F4F7] [#D0D5DD] [#98A2B3] [#667085] #475467 #344054 #1D2939 #101828 */}
-                            <button className="border-x-0 border-t-0 border-b-2 text-sm mr-4 text-[#98A2B3] border-[#98A2B3]  ">
-                              Edit
-                            </button>
+                            
 
                             <button
                               className="border-x-0 border-t-0 border-b-2 text-sm text-error border-error"
@@ -234,11 +199,11 @@ function Cart({ cartItems, onAdd, onReduce, onRemove }) {
           <div className="flex items-center mb-5">
             <BsBoxSeam size={14} className="mr-1" />
             <p className="text-xs">
-              <b>Free Shipping & Returns:</b> On all orders over{" "}
+              <b>Free Shipping & Returns:</b> On all orders over
             </p>
-            <span className="flex items-center ml-0.5">
+            <span className="flex items-center ml-0.5 font-semibold">
               <PiCurrencyNgn size={13} />
-              <p className="text-xs pt-0.5">500,000</p>
+              <p className="text-xs">500,000</p>
             </span>
           </div>
 
@@ -264,3 +229,19 @@ Cart.propTypes = {
 };
 
 export default Cart;
+
+// {!cartItems.length ?
+//   <div className="relative mb-">
+//   <span className="bg-transparent border border-[#F2F4F7] rounded-[50%] p-1.5 ">
+//     <PiShoppingCartBold size={15} className="cursor-pointer  " />
+//   </span>
+//   <span className="bg-slate-600">
+//     <TiPlus
+//       size={9}
+//       className="text-rblue absolute left-4 top-5 "
+//     />
+//   </span>
+// </div>
+// :
+// <CartIcon cart={cartItems} />
+// }

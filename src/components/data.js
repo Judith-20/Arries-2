@@ -43,7 +43,7 @@ export const products = [
   {
     id: 1,
     image: PinkDress,
-    title: "Barbie Dress",
+    title: "Barbie ",
     desc: "Elegant summer dress made with plain silk",
     review: "4.8(222)",
     price: 15000,
@@ -51,7 +51,7 @@ export const products = [
   {
     id: 2,
     image: DarkBlueDress,
-    title: "Barbie's Dress",
+    title: "Barbie's ",
     desc: "Elegant summer dress made with plain silk",
     review: "4.8(222)",
     price: 32000,
@@ -59,7 +59,7 @@ export const products = [
   {
     id: 3,
     image: SkyBlueGown,
-    title: "Angel Dress",
+    title: "Angel ",
     desc: "Elegant summer dress made with plain silk",
     review: "4.8(222)",
     price: 25000,
@@ -67,7 +67,7 @@ export const products = [
   {
     id: 4,
     image: CreamDress,
-    title: "Bebe Dress",
+    title: "Bebe ",
     desc: "Elegant summer dress made with plain silk",
     review: "4.8(222)",
     price: 15000,
@@ -75,7 +75,7 @@ export const products = [
   {
     id: 5,
     image: TraditionalDress,
-    title: "Jem Dress",
+    title: "Jem ",
     desc: "Elegant summer dress made with plain silk",
     review: "4.8(222)",
     price: 55000,
@@ -83,7 +83,7 @@ export const products = [
   {
     id: 6,
     image: WhiteDress,
-    title: "Tubo Dress",
+    title: "Tubo ",
     desc: "Elegant summer dress made with plain silk",
     review: "4.8(222)",
     price: 220000,
@@ -91,7 +91,7 @@ export const products = [
   {
     id: 7,
     image: BabyDress,
-    title: "Princess Dress",
+    title: "Princess ",
     desc: "Elegant summer dress made with plain silk",
     review: "4.8(222)",
     price: 55000,
@@ -99,7 +99,7 @@ export const products = [
   {
     id: 8,
     image: RedPants,
-    title: "Leo Dress",
+    title: "Leo ",
     desc: "Elegant summer dress made with plain silk",
     review: "4.8(222)",
     price: 15000,
@@ -111,7 +111,7 @@ export const products = [
 export const corporateProducts = [
   {
     id: 9,
-    title: "Zee Dress",
+    title: "Zee ",
     image: Zee,
     price: 302000,
     rating: 4.8,
@@ -121,7 +121,7 @@ export const corporateProducts = [
   },
   {
     id: 10,
-    title: "Zara Dress",
+    title: "Zara ",
     image: Zara,
     price: 202000,
     rating: 4.8,
@@ -131,7 +131,7 @@ export const corporateProducts = [
   },
   {
     id: 11,
-    title: "Beam Dress",
+    title: "Beam ",
     image: Beam,
     price: 205000,
     rating: 4.8,
@@ -141,7 +141,7 @@ export const corporateProducts = [
   },
   {
     id: 12,
-    title: "Zamaiah Dress",
+    title: "Zamaiah ",
     image: Zamaiah,
     price: 100000,
     rating: 4.8,
@@ -151,7 +151,7 @@ export const corporateProducts = [
   },
   {
     id: 13,
-    title: "Zoe Dress",
+    title: "Zoe ",
     image: Zoe,
     price: 150000,
     rating: 4.8,
@@ -161,7 +161,7 @@ export const corporateProducts = [
   },
   {
     id: 14,
-    title: "Tubo Dress",
+    title: "Tubo ",
     image: Tubo,
     price: 220000,
     rating: 4.8,
@@ -171,7 +171,7 @@ export const corporateProducts = [
   },
   {
     id: 15,
-    title: "Blaze Dress",
+    title: "Blaze ",
     image: Blaze,
     price: 120000,
     rating: 4.8,
@@ -181,7 +181,7 @@ export const corporateProducts = [
   },
   {
     id: 16,
-    title: "Mays Dress",
+    title: "Mays ",
     image: Mays,
     price: 100000,
     rating: 4.8,
@@ -195,7 +195,7 @@ export const corporateProducts = [
 export const dresses = [
   {
     id: 17,
-    title: "Barbie Dress",
+    title: "Barbie ",
     image: Barbie,
     desc: "Elegant summer dress made with plain silk",
     review: "4.8(222)",
@@ -203,7 +203,7 @@ export const dresses = [
   },
   {
     id: 18,
-    title: "Zara Dress",
+    title: "Zara ",
     image: Zara1,
     desc: "Elegant summer dress made with plain silk",
     review: "4.8(222)",
@@ -211,7 +211,7 @@ export const dresses = [
   },
   {
     id: 19,
-    title: "Angel Dress",
+    title: "Angel ",
     image: Angel,
     desc: "Elegant summer dress made with plain silk",
     review: "4.8(222)",
@@ -219,7 +219,7 @@ export const dresses = [
   },
   {
     id: 20,
-    title: "Bebe Dress",
+    title: "Bebe ",
     image: Bebe,
     desc: "Elegant summer dress made with plain silk",
     review: "4.8(222)",
@@ -227,7 +227,7 @@ export const dresses = [
   },
   {
     id: 21,
-    title: "neon Dress",
+    title: "neon ",
     image: Neon,
     desc: "Elegant summer dress made with plain silk",
     review: "4.8(222)",
@@ -235,7 +235,7 @@ export const dresses = [
   },
   {
     id: 22,
-    title: "more Dress",
+    title: "more ",
     image: More,
     desc: "Elegant summer dress made with plain silk",
     review: "4.8(222)",
@@ -243,7 +243,7 @@ export const dresses = [
   },
   {
     id: 23,
-    title: "choc Dress",
+    title: "choc ",
     image: Choc,
     desc: "Elegant summer dress made with plain silk",
     review: "4.8(222)",
@@ -251,7 +251,7 @@ export const dresses = [
   },
   {
     id: 24,
-    title: "aisy Dress",
+    title: "aisy ",
     image: Aisy,
     desc: "Elegant summer dress made with plain silk",
     review: "4.8(222)",
@@ -265,49 +265,49 @@ export const tabProducts = [
   {
     id: 25,
     image: Zee1,
-    title: "Zee Dress",
+    title: "Zee ",
     price: 302000,
   },
   {
     id: 26,
     image: Zara2,
-    title: "Zara Dress",
+    title: "Zara ",
     price: 202000,
   },
   {
     id: 27,
     image: Beam1,
-    title: "Beam Dress",
+    title: "Beam ",
     price:205000,
   },
   {
     id: 28,
     image: Zamaiah1,
-    title: "Zamaiah Dress",
+    title: "Zamaiah ",
     price: 100000,
   },
   {
     id: 29,
     image: Zoe1,
-    title: "Zoe Dress",
+    title: "Zoe ",
     price:150000,
   },
   {
     id: 30,
     image: Tubo1,
-    title: "Tubo Dress",
+    title: "Tubo ",
     price:220000,
   },
   {
     id: 31,
     image: Blaze1,
-    title: "Blaze Dress",
+    title: "Blaze ",
     price:120000,
   },
   {
     id: 32,
     image: Mays1,
-    title: "Mays Dress",
+    title: "Mays ",
     price:100000,
   },
 ]

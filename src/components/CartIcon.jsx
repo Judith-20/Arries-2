@@ -7,7 +7,7 @@ const CartIcon = ({ cart }) => {
   return (
     <div
       style={{ position: "relative", display: "inline-block" }}
-      className="bg-transparent border border-[#F2F4F7] rounded-[50%] p-1.5"
+      className="bg-transparent border border-[#F2F4F7] rounded-[50%] p-1.5 "
     >
       <PiShoppingCartBold size={15} className="cursor-pointer" />
       {cart?.length > 0 && (
