@@ -2,8 +2,17 @@ import PropTypes from "prop-types";
 
 import { motion } from "framer-motion";
 import { FaCheck } from "../icon";
+import { useCart } from "../contexts/CartProvider";
+import { useNavigate } from "react-router-dom";
 
 const PaymentModal = ({ status, setStatus, onHandlePayment }) => {
+  const { dispatch } = useCart()
+  const navigate = useNavigate();
+
+  function navigateToShop() {
+    dispatch({ type: "CLEAR_CART" })
+    navigate("/shop");
+  }
   if (!status) return null;
 
   return (
@@ -34,11 +43,11 @@ const PaymentModal = ({ status, setStatus, onHandlePayment }) => {
           <>
             <p
               className="font-bold text-lg absolute top-3 right-3 cursor-pointer "
-              onClick={() => setStatus(null)}
+              onClick={() =>{ setStatus(null); navigateToShop() }}
             >
               X
             </p>
-            <span className="border-4 h-14 w-14 shadow-xl -translate-y-5 border-whyte rounded-full absolute right-[10.5rem] mobile:right-[50%] -top-1 bg-rblue flex justify-center items-center ">
+            <span className="border-4 h-14 w-14 shadow-xl -translate-y-5 border-whyte rounded-full absolute right-[10.5rem] mobile:right-[] -top-1 bg-rblue flex justify-center items-center ">
             <FaCheck className="text-whyte text-4xl " />
             </span>
             <h2 className="text-lg font-semibold pb-1">Done!</h2>
@@ -61,7 +70,7 @@ const PaymentModal = ({ status, setStatus, onHandlePayment }) => {
             >
               X
             </p>
-            <span className="border-4 h-14 w-14 shadow-xl -translate-y-5 border-whyte rounded-full absolute right-[10.5rem] mobile:right-[50%] -top-1 bg-error text-4xl text-whyte flex justify-center items-center ">
+            <span className="border-4 h-14 w-14 shadow-xl -translate-y-5 border-whyte rounded-full absolute right-[10.5rem] mobile:right-[] -top-1 bg-error text-4xl text-whyte flex justify-center items-center ">
             !
             </span>
             {/* [#F2F4F7] [#D0D5DD] [#98A2B3] [#667085] #475467 #344054 #1D2939 #101828 */}
@@ -98,28 +107,4 @@ PaymentModal.propTypes = {
 
 export default PaymentModal;
 
-// const PaymentModal = ({ isOpen }) => {
-//     if (!isOpen) return null;
 
-//     return (
-//       <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
-//         <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center">
-//           {/* Rotating Gradient Border */}
-//           <div className="relative w-14 h-14 flex items-center justify-center">
-//             {/* Animated Border */}
-//             <div className="absolute inset-0 rounded-full border-[7px] border-blue-500 border-t-blue-100 animate-spin-slow"
-//                  >
-//             </div>
-//             {/* Inner Circle */}
-//             <div className="w-10 h-10 bg-white rounded-full"></div>
-//           </div>
-
-//           {/* Text */}
-//           <h2 className="mt-4 text-lg font-semibold">Payment in progress</h2>
-//           <p className="text-gray-500 text-sm">Please, wait a few moments</p>
-//         </div>
-//       </div>
-//     );
-//   };
-
-//   export default PaymentModal;

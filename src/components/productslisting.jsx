@@ -1,6 +1,9 @@
 import { useState } from "react";
-import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
+
 import HomePageFooter from "./homepagefooter";
+import NavBar from "../pages/NavBar";
+
 import {
   PiShareBold,
   IoIosArrowDown,
@@ -10,8 +13,7 @@ import {
   IoChevronBackOutline,
   IoChevronForwardOutline,
 } from "../icon";
-import User from "../materials/productslisting/user.png";
-import { NavLink } from "react-router-dom";
+
 import Corporates from "../materials/productslisting/1.png";
 import Dresas from "../materials/productslisting/2.png";
 import Ankara from "../materials/productslisting/3.png";
@@ -27,7 +29,11 @@ import Dress from "./dress";
 import Sarah from "../materials/productslisting/23.png";
 import Emily from "../materials/customers/2.png";
 import Bimpe from "../materials/customers/3.png";
-import NavBar from "../pages/NavBar";
+import User from "../materials/productslisting/user.png";
+import { useAuth } from "../contexts/AuthContext";
+import MobileNav from "./MobileNav";
+import MobileProductsView from "./MobileProductsView";
+import CustomersReview from "./customers_review";
 
 // for the tabs
 const tabs = [
@@ -93,26 +99,6 @@ const outfitNames = [
   },
 ];
 
-// function Test() {
-//   const [selectedTab, setSelectedTab] = useState("Women");
-//   function handleTabClick(tab) {
-//     setSelectedTab(tab);
-//   }
-//   return (
-//     <div className="">
-//       {tabs.map((tab) => (
-//         <div
-//           key={tab.id}
-//           className={selectedTab === tab.title ? "bg-blue-700" : ""}
-//           onClick={() => handleTabClick(tab.title)}
-//         >
-//           {tab.title}
-//         </div>
-//       ))}
-//     </div>
-//   );
-// }
-
 function Tabs() {
   const [selectedTab, setSelectedTab] = useState("Women");
   const [input, setInput] = useState("");
@@ -122,8 +108,17 @@ function Tabs() {
   }
 
   return (
-    <div className="flex gap-[586px] items-center mb-10">
-      <div className="flex gap-8 items-center font-medium">
+    <div className="">
+      <span className="flex justify-end gap-3 md:hidden">
+      <span className="bg-transparent border border-[#D0D5DD] rounded-[50%] h-9 w-9 px-2 pt-2 pb-1 mb-8 ">
+          <PiShareBold size={20} className=" " />
+        </span>
+        <span className="bg-transparent border border-[#D0D5DD] rounded-[50%] h-9 w-9 p-2">
+          <GoHeart size={20} className=" " />
+        </span>
+      </span>
+      <div className="flex justify-between items-center mb-6 md:mb-10">
+      <div className="flex md:gap-8 mobile:w-full mobile:justify-between items-center font-medium">
         {tabs.map((tab) => (
           <div
             key={tab.id}
@@ -139,8 +134,9 @@ function Tabs() {
         ))}
       </div>
 
-      <div className=" relative flex gap-3 w-12 ">
-        {/* [#F2F4F7] [#D0D5DD] [#98A2B3] [#667085] #475467 #344054 #1D2939 #101828 */}
+      <div className=" relative md:flex gap-3 hidden  ">
+          {/* [#F2F4F7] [#D0D5DD] [#98A2B3] [#667085] #475467 #344054 #1D2939 #101828 */}
+          {/* w-12 */}
         <input
           type="text"
           className="text-[#344054] text-sm border-none bg-[#F2F4F7] pl-11 py-4 tracking-wide rounded-lg h-10 "
@@ -152,28 +148,29 @@ function Tabs() {
           size={22}
           className="text-[#475467] absolute left-3 top-[8.5px] "
         />
-        <span className="bg-transparent border border-[#D0D5DD] rounded-[50%] h-9 w-10 px-2 pt-2 pb-1 ">
+        <span className="bg-transparent flex items-center justify-center border border-[#D0D5DD] rounded-[50%] h-10 w-10 ">
           <PiShareBold size={20} className=" " />
         </span>
-        <span className="bg-transparent border border-[#D0D5DD] rounded-[50%] h-9 w-11 p-2">
+        <span className="bg-transparent flex items-center justify-center border border-[#D0D5DD] rounded-[50%] h-10 w-10 ">
           <GoHeart size={20} className=" " />
         </span>
       </div>
+    </div>
     </div>
   );
 }
 
 function OutfitNames() {
   return (
-    <div className="flex border border-[#D0D5DD] border-r-0 mb-10 h-[8rem] ">
-      <ul className="list-none flex justify-evenly">
+    <div className="md:flex md:border md:border-[#D0D5DD] md:border-r-0 md:mb-10 mb-14 h-[8rem] ">
+      <ul className="list-none mobile:border mobile:border-[#D0D5DD] md:flex grid grid-cols-5 justify-evenly">
         {outfitNames.map((outfit, index) => (
           <li
             key={index}
-            className=" border-r border-[#D0D5DD] px-[1.427rem] py-3 flex flex-col items-center justify-center"
+            className="border md:border-r border-[#D0D5DD] md:px-[1.427rem] md:py-3 py-2 flex flex-col items-center justify-center"
           >
-            <img src={outfit.image} alt={outfit.text} className="w-20" />
-            <span className="">{outfit.text}</span>
+            <img src={outfit.image} alt={outfit.text} className="md:w-20 w-[2.49125rem] " />
+            <span className="mobile:text-sm font-medium">{outfit.text}</span>
           </li>
         ))}
       </ul>
@@ -181,8 +178,15 @@ function OutfitNames() {
   );
 }
 
-const ProductListing = ({onAddProducts, corporateProducts, dresses, cart}) => {
+const ProductListing = () => {
   // const [count, setCount] = useState(0);
+  const { logout, user } = useAuth();
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    logout();
+    navigate("/login");
+  }
 
   return (
     <>
@@ -190,42 +194,43 @@ const ProductListing = ({onAddProducts, corporateProducts, dresses, cart}) => {
         <div className="mx-10 mobile:mx-6 mobile:px-6  mt-2  w-[94%] bg-whyte ">
           {/* Main Navigation Bar */}
           <nav className=" flex justify-between  mobile:mt-10 mobile:pt-6 items-center bg-whyte mb-12">
-            <NavBar cart={cart} shopActive="text-rblue">
-            <div className="flex gap- mobile:hidden">
-              <div className="flex gap-2 items-center">
-                <IoIosArrowDown size={15} />
-                <p className="font-medium capitalize text-sm ">hi temi</p>
-                <img
-                  src={User}
-                  alt=""
-                  className="h-[75%] w-[20%] rounded-[50%] "
-                />
+            <NavBar>
+              <div className="flex gap- mobile:hidden">
+                <div className="flex gap-2 items-center">
+                  <IoIosArrowDown size={15} />
+                  {/* <p className="font-medium capitalize text-sm ">hi temi</p> */}
+                  <p className="font-medium capitalize text-sm ">
+                    hi {user.username}
+                  </p>
+                  <img
+                    src={User}
+                    alt=""
+                    className="h-[75%] w-[20%] rounded-[50%] "
+                  />
+                </div>
+
+                <button
+                  className=" border border-rblue rounded-md text-rblue py-1.5 px-[12px] active:bg-[#035ceb] "
+                  onClick={handleLogout}
+                >
+                  Log out
+                </button>
               </div>
-
-              <button className=" border border-rblue rounded-md text-rblue py-1.5 px-[12px] active:bg-[#035ceb] ">
-                <NavLink to={"/logout"}> Log out </NavLink>
-              </button>
-            </div>
             </NavBar>
-
-            
+            <MobileNav />
           </nav>
 
           <Tabs />
 
           <OutfitNames />
-          <Corporate
-            onAddProducts={onAddProducts}
-            corporateProducts={corporateProducts}
-          />
+          <Corporate />
 
-          <Dress
-            onAddProducts={onAddProducts}
-            dresses ={dresses}
-          />
+          <Dress />
+          <MobileProductsView />
         </div>
         {/* Customers Review */}
-        <div className="bg-sblue w-full ">
+        <CustomersReview />
+        {/* <div className="bg-sblue w-full ">
           <div className="mt-10 w-full">
             <h1 className="text-3xl font-medium mb-9 text-center pt-16">
               Our Customers Review
@@ -238,7 +243,7 @@ const ProductListing = ({onAddProducts, corporateProducts, dresses, cart}) => {
                   className="h-[60%] w-[25%] mobile:w-[20%] mr-14 mobile:mr-6 my-auto "
                 />
                 <div className="flex flex-col pr-4 my-auto">
-                  {/* [#F2F4F7] [#D0D5DD] [#98A2B3] [#667085] #475467 #344054 #1D2939 #101828 */}
+                 
                   <p className="font-semibold text-black text-xs leading-5 mobile:w-[40] mb-5">
                     &#34;Impressive variety of styles and brands. My clothes
                     were perfect fit&#34;
@@ -265,7 +270,6 @@ const ProductListing = ({onAddProducts, corporateProducts, dresses, cart}) => {
                   className="h-[60%] w-[35%]   mr-14 mobile:mr-2 my-auto "
                 />
                 <div className="flex flex-col pr-1  my-auto">
-                  {/* [#F2F4F7] [#D0D5DD] [#98A2B3] [#667085] #475467 #344054 #1D2939 #101828 */}
                   <p className="font-semibold text-black text-xs leading-5 w-full mb-1 pt-7">
                     &#34;Easy to use app with great trends and personalized
                     recommendations. Highly recommended.&#34;
@@ -292,7 +296,6 @@ const ProductListing = ({onAddProducts, corporateProducts, dresses, cart}) => {
                   className="h-[60%] w-[40%] mobile:w-  mr-8 mobile:mr-2 my-auto "
                 />
                 <div className="flex flex-col pr-4 my-auto">
-                  {/* [#F2F4F7] [#D0D5DD] [#98A2B3] [#667085] #475467 #344054 #1D2939 #101828 */}
                   <p className="font-semibold text-black text-xs leading-5 w-full mb-5">
                     &#34;I got my exact order and they were perfect fit&#34;
                   </p>
@@ -313,7 +316,6 @@ const ProductListing = ({onAddProducts, corporateProducts, dresses, cart}) => {
             </div>
 
             <div className=" flex justify-center gap-3 pb-14 mt-4 ">
-              {/* [#F2F4F7] [#D0D5DD] [#98A2B3] [#667085] #475467 #344054 #1D2939 #101828 */}
               <span className="bg-white rounded-[50%] p-2">
                 <IoChevronBackOutline
                   size={20}
@@ -328,7 +330,7 @@ const ProductListing = ({onAddProducts, corporateProducts, dresses, cart}) => {
               </span>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Footer */}
 
@@ -338,12 +340,4 @@ const ProductListing = ({onAddProducts, corporateProducts, dresses, cart}) => {
   );
 };
 
-ProductListing.propTypes = {
-  onAddProducts: PropTypes.func,
-  cart: PropTypes.array,
-  corporateProducts: PropTypes.array,
-  dresses: PropTypes.array,
-};
-
 export default ProductListing;
-

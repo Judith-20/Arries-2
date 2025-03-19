@@ -3,7 +3,13 @@ import { NavLink, Link } from "react-router-dom";
 import CartIcon from "../components/CartIcon";
 import PropTypes from "prop-types";
 
-function NavBar({cart, children, homeActive, shopActive, productActive, contactActive}) {
+function NavBar({
+  children,
+  homeActive,
+  shopActive,
+  productActive,
+  contactActive,
+}) {
   return (
     <>
       <img
@@ -15,20 +21,48 @@ function NavBar({cart, children, homeActive, shopActive, productActive, contactA
       <div className="flex items-center gap-3 mobile:hidden">
         <ul className=" mobile:hidden flex gap-5 text-[13px] font-Inter font-semibold ">
           <li className={`${homeActive}`}>
-            <NavLink to="/">Home</NavLink>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? "nav-link-active hover:bg-[#0b69ff] hover:p-4" : "transition-colors duration-200 ease-in-out hover:bg-[#0b69ff] hover:p-4 nav-link"
+              }
+            >
+              Home
+            </NavLink>
           </li>
           <li className={`${shopActive}`}>
-            <NavLink to="/shop">Shop</NavLink>
+            <NavLink
+              to="/shop"
+              className={({ isActive }) =>
+                isActive ? "nav-link-active hover:bg-[#0b69ff] hover:p-4" : "transition-colors duration-200 ease-in-out hover:bg-[#0b69ff] hover:p-4 nav-link"
+              }
+            >
+              Shop
+            </NavLink>
           </li>
           <li className={`${productActive}`}>
-            <NavLink to="/products">Products</NavLink>
+            <NavLink
+              to="/products"
+              className={({ isActive }) =>
+                isActive ? "nav-link-active hover:bg-[#0b69ff] hover:p-4" : "transition-colors duration-200 ease-in-out hover:bg-[#0b69ff] hover:p-4 nav-link"
+              }
+            >
+              Products
+            </NavLink>
           </li>
           <li className={`${contactActive}`}>
-            <NavLink to="/contact-us">Contact Us</NavLink>
+            <NavLink
+              to="/contact-us"
+              className={({ isActive }) =>
+                isActive ? " nav-link-active hover:bg-[#0b69ff] hover:p-4" : "transition-colors duration-200 ease-in-out hover:bg-[#0b69ff] hover:p-4 nav-link"
+              }
+            >
+              Contact Us
+            </NavLink>
           </li>
         </ul>
         <Link to="/cart">
-          <CartIcon cart={cart} />
+          <CartIcon />
         </Link>
       </div>
 
@@ -40,10 +74,10 @@ function NavBar({cart, children, homeActive, shopActive, productActive, contactA
 NavBar.propTypes = {
   cart: PropTypes.array,
   children: PropTypes.node,
-  homeActive:PropTypes.string,
-  shopActive:PropTypes.string,
-  productActive:PropTypes.string,
-  contactActive:PropTypes.string,
+  homeActive: PropTypes.string,
+  shopActive: PropTypes.string,
+  productActive: PropTypes.string,
+  contactActive: PropTypes.string,
 };
 
 export default NavBar;

@@ -124,11 +124,11 @@ const CustomersReview = () => {
   return (
     <>
       <div className="bg-sblue w-full mb-1">
-        <div className="mt-10">
-          <h1 className="text-3xl font-medium mb-9 text-center pt-16">
+        <div className="md:mt-10 mt-16">
+          <h1 className="md:text-3xl text-lg font-semibold md:font-medium mobile:mb-10 md:mb-9 text-center pt-10 md:pt-16">
             Our Customers Review
           </h1>
-          <div className="flex gap-7 overflow-hidden ">
+          <div className="flex gap-7 mobile:justify-center overflow-hidden ">
             {/* gap-4 */}
             <div className="flex mobile:hidden bg-white w-[50%] rounded-md mb-5">
               <img
@@ -157,19 +157,19 @@ const CustomersReview = () => {
               </div>
             </div>
 
-            <div className="flex bg-white w-[60%] rounded-md mb-5 pl-8">
+            <div className="flex bg-white w-[60%] mobile:w-[80%] mobile:py-6 rounded-md mb-5 pl-8">
               <img
                 src={Emily}
                 alt="Emily"
-                className="h-[60%] w-[35%]   mr-14 mobile:mr-2 my-auto "
+                className="md:h-[60%] md:w-[35%] w-[35%] mr-14 mobile:mr-2 my-auto "
               />
               <div className="flex flex-col pr-4  my-auto">
                 {/* [#F2F4F7] [#D0D5DD] [#98A2B3] [#667085] #475467 #344054 #1D2939 #101828 */}
-                <p className="font-semibold text-black text-xs leading-5 w-full mb-5">
+                <p className="font-semibold text-black text-xs leading-5 w-full mb-3 md:mb-5">
                   &quot;Easy to use app with great trends and personalized
                   recommendations. Highly recommended.&quot;
                 </p>
-                <div className="flex mb-4">
+                <div className="flex mobile:mb-3 md:mb-4">
                   <HiStar size={15} className="text-warning" />
                   <HiStar size={15} className="text-warning" />
                   <HiStar size={15} className="text-warning" />
@@ -177,7 +177,7 @@ const CustomersReview = () => {
                   <HiStar size={15} className="text-warning" />
                 </div>
                 <hr className="w-32  border-[#98A2B3] " />
-                <p className="font-semibold text-lg capitalize mb- ">
+                <p className="font-semibold text-sm mb:text-lg capitalize mb- ">
                   emily r.
                 </p>
                 <p className="text-[11px] font-medium">Baker</p>

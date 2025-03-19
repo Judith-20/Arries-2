@@ -20,6 +20,9 @@ export default {
       },
       fontFamily: {
         Inter: ["Inter", "sans-serif"],
+        Lato: ["Lato", "sans-serif"],
+        Poppins: ["Poppins", "sans-serif"],
+        Playfair: ["Playfair Display", "serif"],
         'digital': ['Digital-7', 'sans-serif'],
         'digital-numbers': ['DigitalNumbers', 'sans-serif'],
       },

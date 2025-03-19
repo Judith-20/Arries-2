@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   BsDashCircleFill,
   IoIosAddCircleOutline,
@@ -6,18 +8,19 @@ import {
   GoHeartFill,
   HiStar,
 } from "../icon";
-import PropTypes from "prop-types";
 import Button from "./Button";
-import { useState } from "react";
-// import { BsDashCircleFill, IoIosAddCircleOutline, PiCurrencyNgn, GoHeart, GoHeartFill, HiStar, IoChevronForwardOutline, IoChevronBackOutline  } from "../icon";
+import { dresses } from "../components/data";
+import { useCart } from "../contexts/CartProvider";
 
 
-const Dress = ({ dresses, onAddProducts }) => {
+const Dress = () => {
   const [favorites, setFavorites] = useState({});
 
   const [quantities, setQuantities] = useState(
     dresses.reduce((acc, product) => ({ ...acc, [product.id]: 0 }), {})
   );
+
+  const { dispatch } = useCart();
 
   const handleIncrease = (id) => {
     setQuantities({ ...quantities, [id]: quantities[id] + 1 });
@@ -45,7 +48,7 @@ const Dress = ({ dresses, onAddProducts }) => {
 
   return (
     <>
-      <div className="">
+      <div className="hidden md:block">
         <div className="mb-10 ">
           <h1 className="text-xl font-semibold mb-4 ">Dress</h1>
           <div className="flex flex-wrap gap-5 mobile: w-full relative">
@@ -111,24 +114,30 @@ const Dress = ({ dresses, onAddProducts }) => {
                       onClick={() => handleIncrease(product.id)}
                     />
                   </span>
-
                 </div>
-                  <span className="w-full flex items-end justify-end text-whyte ">
-                    <Button
-                      style={{
-                        padding: "0.2rem 0.5rem",
-                        backgroundColor: "#0b69ff",
-                      }}
-                      onClick={() =>
-                        onAddProducts({
+                <span className="w-full flex items-end justify-end text-whyte ">
+                  <Button
+                    style={{
+                      padding: "0.2rem 0.5rem",
+                      backgroundColor: "#0b69ff",
+                    }}
+                    onClick={() =>
+                      // onAddProducts({
+                      //   ...product,
+                      //   quantity: quantities[product.id] || 1,
+                      // })
+                      dispatch({
+                        type: "addToCart",
+                        payload: {
                           ...product,
                           quantity: quantities[product.id] || 1,
-                        })
-                      }
-                    >
-                      Add to cart
-                    </Button>
-                  </span>
+                        },
+                      })
+                    }
+                  >
+                    Add to cart
+                  </Button>
+                </span>
               </div>
             ))}
           </div>
@@ -138,9 +147,5 @@ const Dress = ({ dresses, onAddProducts }) => {
   );
 };
 
-Dress.propTypes = {
-  onAddProducts: PropTypes.func.isRequired,
-  dresses: PropTypes.array,
-};
 
 export default Dress;

@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
-import Button from "./Button";
+import { useState } from "react";
+
 import {
   BsDashCircleFill,
   IoIosAddCircleOutline,
@@ -8,12 +8,17 @@ import {
   GoHeartFill,
   HiStar,
 } from "../icon";
-import { useState } from "react";
+
+import Button from "./Button";
+import { corporateProducts } from "../components/data";
+import { useCart } from "../contexts/CartProvider";
 
 
-const Corporate = ({ corporateProducts, onAddProducts }) => {
+const Corporate = () => {
   // const navigate = useNavigate();
   const [favorites, setFavorites] = useState({});
+
+  const {dispatch} = useCart();
 
   const [quantities, setQuantities] = useState(
     corporateProducts.reduce(
@@ -33,16 +38,7 @@ const Corporate = ({ corporateProducts, onAddProducts }) => {
     });
   };
 
-  // const {
-  //   title,
-  //   img:image,
-  //   desc,
-  //   price} = corporateProducts
-
-  //   console.log(title)
-  //   console.log(image)
-  //   console.log(desc)
-  //   console.log(price)
+  
 
   const handleFavoriteToggle = (id) => {
     setFavorites((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -58,7 +54,7 @@ const Corporate = ({ corporateProducts, onAddProducts }) => {
   }
 
   return (
-    <div className="mb-10 mt-4">
+    <div className="mb-10 mt-4 hidden md:block">
       <h1 className="text-xl font-semibold mb-4">Corporate</h1>
       <div className="flex flex-wrap gap-5 mobile:w-full relative">
         {corporateProducts?.map((product) => (
@@ -115,7 +111,7 @@ const Corporate = ({ corporateProducts, onAddProducts }) => {
                   onClick={() => handleDecrease(product.id)}
                 />
                 
-                {/* <p className="">{product.quantity}</p> */}
+                
                 <p className="">{quantities[product.id]}</p>
                 <IoIosAddCircleOutline
                   size={21}
@@ -130,10 +126,7 @@ const Corporate = ({ corporateProducts, onAddProducts }) => {
               <Button
                 style={{ padding: "0.2rem 0.5rem", backgroundColor: "#0b69ff"  }}
                 onClick={() =>
-                  onAddProducts({
-                    ...product,
-                    quantity: quantities[product.id] || 1,
-                  })
+                 dispatch({type:"addToCart", payload: {...product, quantity: quantities[product.id] || 1}})
                 }
               >
                 Add to cart
@@ -146,9 +139,5 @@ const Corporate = ({ corporateProducts, onAddProducts }) => {
   );
 };
 
-Corporate.propTypes = {
-  onAddProducts: PropTypes.func.isRequired,
-  corporateProducts: PropTypes.array,
-};
 
 export default Corporate;

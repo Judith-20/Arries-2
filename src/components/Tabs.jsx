@@ -10,13 +10,13 @@ function Tabs({ tabs, state, className, divStyle, pStyle }) {
   }
 
   return (
-    <div className="font-medium">
+    <div className="font-bold">
       <div className="flex gap-4 items-center">
         {tabs?.map((tab) => (
             <div
               key={tab.title}
               style={divStyle}
-              className={`cursor-pointer ${
+              className={`cursor-pointer text-sm md:text-[1.125rem] md:leading-[1.75rem]  ${
                 selectedTab === tab.title ? `${className}` : ""
               }`}
               onClick={() => handleTabClick(tab.title)}
@@ -29,7 +29,7 @@ function Tabs({ tabs, state, className, divStyle, pStyle }) {
       {tabs?.map((tab, index) => (
         <div key={index} className="">
           {tab.details && selectedTab === tab.title ? (
-            <p style={pStyle}>{tab.details}</p>
+            <p style={pStyle} className="md:text-base text-xs mobile:leading-relaxed">{tab.details}</p>
           ) : (
             ""
           )}

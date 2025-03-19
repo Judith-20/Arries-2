@@ -1,6 +1,9 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+
 import Button from "./Button";
+import { products } from "../components/data";
+
 import {
   BsDashCircleFill,
   IoIosAddCircleOutline,
@@ -9,30 +12,26 @@ import {
   HiStar,
   GoHeart,
 } from "../icon";
+import { useCart } from "../contexts/CartProvider";
 
-
-function PopularProducts1({
-  products,
-  onAddProducts,
-}) {
+function PopularProducts1() {
   const [quantities, setQuantities] = useState(
     products.reduce((acc, product) => ({ ...acc, [product.id]: 0 }), {})
   );
   return (
     <>
-      <div className="grid grid-cols-4 gap-5 gap-y-12 bg-whyte ">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-y-12 bg-whyte w-full ">
         {products?.map((product) => (
           <Product
             product={product}
             key={product.id}
-            onAddProducts={onAddProducts}
             quantities={quantities}
-            setQuantities= {setQuantities}
+            setQuantities={setQuantities}
           />
         ))}
       </div>
       <div className="flex justify-end">
-        <Button
+        {/* <Button
           style={{
             padding: ".5rem .75rem",
             color: "#035ceb",
@@ -43,16 +42,17 @@ function PopularProducts1({
           }}
         >
           View more
-        </Button>
+        </Button> */}
       </div>
     </>
   );
 }
 
 // setAddedProducts
-function Product({ product, onAddProducts, quantities, setQuantities }) {
+function Product({ product, quantities, setQuantities }) {
   // const [count, setCount] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+  const { dispatch } = useCart();
 
   const handleIncrease = (id) => {
     setQuantities({ ...quantities, [id]: quantities[id] + 1 });
@@ -67,20 +67,20 @@ function Product({ product, onAddProducts, quantities, setQuantities }) {
 
   function formatCurrency(value) {
     const formattedCurrency = new Intl.NumberFormat("en-NG", {
-      style:"currency", 
+      style: "currency",
       currency: "NGN",
-      minimumSignificantDigits:"2"
-    }).format(value)
-    return formattedCurrency
+      minimumSignificantDigits: "2",
+    }).format(value);
+    return formattedCurrency;
   }
 
   return (
     <div className="rounded-[.85rem] flex flex-col gap-y-1 items-start hover:-translate-y-1 hover:scale-100 duration-500  ">
       {/**shadow-md hover:scale-105 */}
-      <img src={product.image} alt={`${product.title} Dress`}loading="lazy" />
+      <img src={product.image} alt={`${product.title} Dress`} loading="lazy" />
       <span className="flex flex-col w-full">
-        <span className="flex items-center justify-between font-bold text-lg mt-2">
-        {`${product.title} Dress`}
+        <span className="flex items-center justify-between font-semibold md:font-bold md:text-lg text-sm mt-2">
+          {`${product.title} Dress`}
 
           {isOpen ? (
             <GoHeartFill
@@ -97,7 +97,7 @@ function Product({ product, onAddProducts, quantities, setQuantities }) {
           )}
           {/* pr-1 mr-4 */}
         </span>
-        <p className="text-sm font-medium mobile:leading-3 mobile:text-[8.2px] text-[#98A2B3] w-[93%] mobile:pb-0">
+        <p className="md:text-sm font-medium mobile:leading-3 text-[9px] text-[#98A2B3] md:w-[93%] w-[54.5%] ">
           {product.desc}
         </p>
         {/* pb-1.5 */}
@@ -119,14 +119,12 @@ function Product({ product, onAddProducts, quantities, setQuantities }) {
           {/* <PiCurrencyNgn size={18} className=" mobile:pl-0.5" /> */}
           {formatCurrency(product.price)}
         </span>
-        <span className="flex items-center">
+        <span className="flex items-center mobile:hidden">
           <BsDashCircleFill
             size={17}
             className="text-[#D0D5DD] mr-2 mobile:pr-1 cursor-pointer"
             onClick={() => handleDecrease(product.id)}
           />
-          {/* <p className="">{count}</p> */}
-          {/* <p className="">{product.quantity || 0}</p> */}
           <p className="">{quantities[product.id]}</p>
           <IoIosAddCircleOutline
             size={21}
@@ -138,7 +136,18 @@ function Product({ product, onAddProducts, quantities, setQuantities }) {
 
       <span className="w-full flex items-end justify-end text-whyte ">
         {/* <Button style={{ padding: "0.2rem 0.5rem", backgroundColor: "#0b69ff" }} onClick={() => onAddProducts(product)}>Add to cart</Button> */}
-        <Button style={{ padding: "0.2rem 0.5rem", backgroundColor: "#0b69ff" }} onClick={() => onAddProducts({...product, quantity:quantities[product.id] || 1})}>Add to cart</Button>
+        {/* <Button style={{ padding: "0.2rem 0.5rem", backgroundColor: "#0b69ff" }} onClick={() => onAddProducts({...product, quantity:quantities[product.id] || 1})}>Add to cart</Button> */}
+        <Button
+          style={{ padding: "0.2rem 0.5rem", backgroundColor: "#0b69ff" }}
+          onClick={() =>
+            dispatch({
+              type: "addToCart",
+              payload: { ...product, quantity: quantities[product.id] || 1 },
+            })
+          }
+        >
+          Add to cart
+        </Button>
       </span>
     </div>
   );
@@ -159,11 +168,6 @@ Product.propTypes = {
   onAddProducts: PropTypes.func,
   quantities: PropTypes.object,
   setQuantities: PropTypes.func,
-};
-
-PopularProducts1.propTypes = {
-  products: PropTypes.array,
-  onAddProducts: PropTypes.func,
 };
 
 export default PopularProducts1;
