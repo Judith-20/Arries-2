@@ -77,7 +77,7 @@ function Product({ product, quantities, setQuantities }) {
   return (
     <div className="rounded-[.85rem] flex flex-col gap-y-1 items-start hover:-translate-y-1 hover:scale-100 duration-500  ">
       {/**shadow-md hover:scale-105 */}
-      <img src={product.image} alt={`${product.title} Dress`} loading="lazy" />
+      <img src={product.image} alt={`${product.title} Dress`}  />
       <span className="flex flex-col w-full">
         <span className="flex items-center justify-between font-semibold md:font-bold md:text-lg text-sm mt-2">
           {`${product.title} Dress`}
