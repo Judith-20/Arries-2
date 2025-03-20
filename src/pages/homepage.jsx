@@ -64,7 +64,7 @@ const HomePage = () => {
                 sales
               </p>
 
-              <div className="mb-6 flex items-center gap-3 md:gap-0 w-full text-sm mt-8 mobile:mt-6 font-medium md:text-[1.5625rem] tracking-tight ">
+              <div className="mb-6 flex items-center mobile:justify-center gap-3 md:gap-0 w-full text-sm mt-8 mobile:mt-6 font-medium md:text-[1.5625rem] tracking-tight ">
                 <p className="text-whyte">Get 25% off </p>
                 <PiLineVerticalThin className="text-slate-400" />
                 <p className="text-whyte">Free Shipping </p>
