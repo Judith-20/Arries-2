@@ -9,7 +9,7 @@ import { CartProvider } from "./contexts/CartProvider";
 
 // import ContactUs from './pages/contact-us';
 import GetStarted from "./pages/get_started";
-import Login from "./pages/Login";
+import Login from "./pages/login";
 import PageNotFound from "./pages/PageNotFound";
 // import Spinner from "./components/Spinner";
 
