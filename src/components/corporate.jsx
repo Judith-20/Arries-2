@@ -65,7 +65,7 @@ const Corporate = () => {
             <img
               src={product.image}
               alt={`${product.title} Dress`}
-              // loading="lazy"
+              loading="lazy"
               className="h-[65%] mobile:h-[60%] w-full"
             />
             <div className="flex justify-between items-center pt-2.5 mobile:pt-2 mobile:w-full">
